@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Admin - PagosBot PRO</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f3f4f6;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+            color: white;
+            padding: 2rem;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            opacity: 0.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .config-section {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .config-section h3 {
+            color: #1e40af;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .status-configured {
+            background: #d1fae5;
+            color: #059669;
+        }
+
+        .status-not-configured {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #374151;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.875rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .form-group input[readonly] {
+            background: #f9fafb;
+            cursor: default;
+        }
+
+        .info-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-box p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #1e40af;
+            line-height: 1.6;
+        }
+
+        .info-box strong {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-box a {
+            color: #059669;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-save {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            color: white;
+        }
+
+        .btn-save:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);
+        }
+
+        .btn-save:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-test {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+        }
+
+        .btn-test:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .test-section {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+        }
+
+        .warning-box {
+            background: white;
+            border: 2px solid #fbbf24;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .warning-box p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #92400e;
+        }
+
+        .status-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: #f9fafb;
+            border-radius: 8px;
+        }
+
+        .status-item strong {
+            color: #374151;
+        }
+
+        .status-item .status-text {
+            font-weight: 600;
+        }
+
+        .status-text.success {
+            color: #059669;
+        }
+
+        .status-text.warning {
+            color: #f59e0b;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .modal-header h2 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-header p {
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .alert-box {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .alert-box p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #92400e;
+        }
+
+        .modal-footer {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            padding: 0 2rem 2rem;
+        }
+
+        .btn-block {
+            grid-column: 1 / -1;
+        }
+
+        .btn-cancel {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .btn-cancel:hover {
+            background: #d1d5db;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .config-section {
+                padding: 1.5rem;
+            }
+
+            .button-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-footer {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <a href="index.html" class="back-link">← Volver al sitio</a>
+            <h1 style="font-size: 2rem; margin-bottom: 0.5rem;">⚙️ Panel de Administración</h1>
+            <p style="opacity: 0.9;">Configura los webhooks y API keys de PagosBot PRO</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="config-section">
+            <h3>🔗 Webhook de Make.com (Captura de Datos)</h3>
+            
+            <div id="webhookStatus" class="status-badge status-not-configured">
+                ⚠️ Webhook no configurado
+            </div>
+
+            <div class="form-group">
+                <label for="webhookUrl">URL del Webhook de Make.com:</label>
+                <input 
+                    type="url" 
+                    id="webhookUrl" 
+                    placeholder="https://hook.us2.make.com/..."
+                >
+            </div>
+
+            <div class="info-box">
+                <p>
+                    <strong>ℹ️ Qué hace este webhook:</strong>
+                    Cuando un cliente compra un plan, Make.com captura:<br>
+                    • Nombre del cliente<br>
+                    • Email<br>
+                    • Plan adquirido<br>
+                    • Valor pagado<br>
+                    <br>
+                    <strong>Luego automáticamente:</strong><br>
+                    • Envía el archivo por email<br>
+                    • Registra la venta en Google Sheets<br>
+                    • Notifica al admin
+                </p>
+            </div>
+
+            <button class="btn btn-save" onclick="saveWebhook()">💾 Guardar Webhook</button>
+        </div>
+
+        <div class="config-section test-section">
+            <h3>🧪 Probar Envío de Datos a Make.com</h3>
+            
+            <div class="warning-box">
+                <p>
+                    <strong>🎯 ¿Para qué sirve esto?</strong><br>
+                    Te permite probar que Make.com está recibiendo correctamente los datos SIN necesidad de hacer un pago real. Simula una compra completa y envía los datos de prueba directamente a tu webhook.
+                </p>
+            </div>
+
+            <button id="testButton" class="btn btn-test" onclick="openTestModal()" disabled>
+                🔒 Configura el webhook primero
+            </button>
+
+            <p id="testWarning" style="text-align: center; color: #f59e0b; margin-top: 1rem; font-size: 0.9rem;">
+                ⚠️ Primero debes guardar el webhook de Make.com arriba
+            </p>
+        </div>
+
+        <div class="config-section">
+            <h3>🤖 API de Gemini (Chatbot)</h3>
+            
+            <div id="geminiStatus" class="status-badge status-not-configured">
+                ⚠️ API no configurada
+            </div>
+
+            <div class="form-group">
+                <label for="geminiApiKey">API Key de Google Gemini:</label>
+                <input 
+                    type="text" 
+                    id="geminiApiKey" 
+                    placeholder="AIza..."
+                >
+            </div>
+
+            <div class="info-box">
+                <p>
+                    <strong>ℹ️ Cómo obtener tu API Key:</strong><br>
+                    1. Ve a <a href="https://makersuite.google.com/app/apikey" target="_blank">Google AI Studio</a><br>
+                    2. Crea una API Key gratuita<br>
+                    3. Copia y pega aquí
+                </p>
+            </div>
+
+            <button class="btn btn-save" onclick="saveGemini()">💾 Guardar API Key</button>
+        </div>
+
+        <div class="config-section">
+            <h3>🧪 Link de Prueba de Wompi</h3>
+            
+            <div class="status-badge status-configured">
+                ✅ Link configurado
+            </div>
+
+            <div class="form-group">
+                <label for="wompiTestLink">Link de Prueba:</label>
+                <input 
+                    type="url" 
+                    id="wompiTestLink" 
+                    value="https://checkout.wompi.co/l/test_VPOS_7OpYwZ"
+                    readonly
+                >
+            </div>
+
+            <div class="info-box">
+                <p>
+                    <strong>ℹ️ Qué es esto:</strong><br>
+                    Link de prueba de Wompi para verificar el flujo completo con tarjetas de prueba.
+                </p>
+            </div>
+
+            <div class="button-grid">
+                <button class="btn btn-secondary" onclick="openWompiTest()">
+                    🧪 Abrir Link
+                </button>
+                <button class="btn btn-secondary" onclick="copyTestLink()">
+                    📋 Copiar Link
+                </button>
+            </div>
+        </div>
+
+        <div class="config-section">
+            <h3>📊 Estado del Sistema</h3>
+            
+            <div class="status-grid">
+                <div class="status-item">
+                    <strong>🔒 Autenticación Admin:</strong>
+                    <span class="status-text success">✅ Activa</span>
+                </div>
+                
+                <div class="status-item">
+                    <strong>💰 Links de Wompi:</strong>
+                    <span class="status-text success">✅ Configurados</span>
+                </div>
+                
+                <div class="status-item">
+                    <strong>🔗 Webhook Make.com:</strong>
+                    <span id="systemWebhookStatus" class="status-text warning">⚠️ Pendiente</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="testModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🧪 Enviar Datos de Prueba</h2>
+                <p>Simula una compra y envía datos a Make.com</p>
+            </div>
+
+            <div class="modal-body">
+                <div class="alert-box">
+                    <p>
+                        <strong>⚡ Esto es una simulación:</strong><br>
+                        No se procesará ningún pago real. Solo se enviarán los datos a Make.com para verificar que todo funciona.
+                    </p>
+                </div>
+
+                <div class="form-group">
+                    <label for="testPlan">Plan:</label>
+                    <select id="testPlan">
+                        <option value="BASICO">Plan Básico - $100,000</option>
+                        <option value="PRO" selected>Plan PRO - $250,000</option>
+                        <option value="EMPRESARIAL">Plan Empresarial - $500,000</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="testName">Nombre del Cliente:</label>
+                    <input type="text" id="testName" value="Juan Pérez (PRUEBA)">
+                </div>
+
+                <div class="form-group">
+                    <label for="testEmail">Email del Cliente:</label>
+                    <input type="email" id="testEmail" value="prueba@ejemplo.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="testAmount">Valor (COP):</label>
+                    <input type="number" id="testAmount" value="250000">
+                </div>
+
+                <div class="info-box">
+                    <p>
+                        <strong>📨 Lo que recibirá Make.com:</strong><br>
+                        • Plan seleccionado<br>
+                        • Datos del cliente<br>
+                        • Monto de la compra<br>
+                        • Estado: APPROVED (prueba)
+                    </p>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-save" onclick="sendTestData()">
+                    ✅ Enviar a Make.com
+                </button>
+                <button class="btn btn-cancel" onclick="closeTestModal()">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('load', function() {
+            loadConfig();
+        });
+
+        function loadConfig() {
+            var savedWebhook = localStorage.getItem('make_webhook_url');
+            if (savedWebhook) {
+                document.getElementById('webhookUrl').value = savedWebhook;
+                document.getElementById('webhookStatus').className = 'status-badge status-configured';
+                document.getElementById('webhookStatus').textContent = '✅ Webhook configurado';
+                document.getElementById('systemWebhookStatus').className = 'status-text success';
+                document.getElementById('systemWebhookStatus').textContent = '✅ Configurado';
+                document.getElementById('testButton').disabled = false;
+                document.getElementById('testButton').textContent = '🧪 Enviar Datos de Prueba a Make.com';
+                document.getElementById('testWarning').style.display = 'none';
+            }
+
+            var savedGemini = localStorage.getItem('gemini_api_key');
+            if (savedGemini) {
+                document.getElementById('geminiApiKey').value = savedGemini;
+                document.getElementById('geminiStatus').className = 'status-badge status-configured';
+                document.getElementById('geminiStatus').textContent = '✅ API configurada';
+            }
+        }
+
+        function saveWebhook() {
+            var webhookUrl = document.getElementById('webhookUrl').value.trim();
+            
+            if (!webhookUrl) {
+                alert('⚠️ Por favor ingresa una URL de webhook');
+                return;
+            }
+            
+            if (webhookUrl.indexOf('hook') === -1) {
+                alert('⚠️ La URL no parece ser un webhook válido de Make.com');
+                return;
+            }
+            
+            localStorage.setItem('make_webhook_url', webhookUrl);
+            
+            document.getElementById('webhookStatus').className = 'status-badge status-configured';
+            document.getElementById('webhookStatus').textContent = '✅ Webhook configurado';
+            document.getElementById('systemWebhookStatus').className = 'status-text success';
+            document.getElementById('systemWebhookStatus').textContent = '✅ Configurado';
+            document.getElementById('testButton').disabled = false;
+            document.getElementById('testButton').textContent = '🧪 Enviar Datos de Prueba a Make.com';
+            document.getElementById('testWarning').style.display = 'none';
+            
+            alert('✅ Webhook guardado correctamente!\n\nAhora Make.com recibirá los datos de las compras.');
+        }
+
+        function saveGemini() {
+            var apiKey = document.getElementById('geminiApiKey').value.trim();
+            
+            if (!apiKey) {
+                alert('⚠️ Por favor ingresa tu API Key de Gemini');
+                return;
+            }
+            
+            if (apiKey.length < 10) {
+                alert('⚠️ La API Key parece incorrecta. Debe ser más larga.');
+                return;
+            }
+            
+            localStorage.setItem('gemini_api_key', apiKey);
+            
+            document.getElementById('geminiStatus').className = 'status-badge status-configured';
+            document.getElementById('geminiStatus').textContent = '✅ API configurada';
+            
+            alert('✅ API Key guardada correctamente!\n\nEl chatbot ahora usará Gemini AI.');
+        }
+
+        function openTestModal() {
+            document.getElementById('testModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeTestModal() {
+            document.getElementById('testModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function sendTestData() {
+            var webhookUrl = localStorage.getItem('make_webhook_url');
+            
+            if (!webhookUrl) {
+                alert('❌ Error: No hay webhook configurado');
+                return;
+            }
+
+            var plan = document.getElementById('testPlan').value;
+            var name = document.getElementById('testName').value;
+            var email = document.getElementById('testEmail').value;
+            var amount = document.getElementById('testAmount').value;
+
+            var webhookData = {
+                event: 'payment_success',
+                test_mode: true,
+                transaction: {
+                    id: 'TEST-' + Date.now(),
+                    status: 'APPROVED',
+                    reference: 'PRUEBA-' + Math.random().toString(36).substr(2, 9).toUpperCase(),
+                    date: new Date().toISOString(),
+                    payment_method: 'TEST',
+                    currency: 'COP'
+                },
+                customer: {
+                    name: name,
+                    email: email,
+                    phone: '+57 300 000 0000'
+                },
+                plan: {
+                    type: plan,
+                    name: 'Plan ' + plan,
+                    price: parseInt(amount),
+                    currency: 'COP'
+                },
+                metadata: {
+                    source: 'admin_test',
+                    timestamp: new Date().toISOString(),
+                    note: 'Prueba desde panel admin'
+                }
+            };
+
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(webhookData)
+            })
+            .then(function(response) {
+                if (response.ok) {
+                    alert('✅ ¡Datos enviados exitosamente a Make.com!\n\n' +
+                          'Revisa tu escenario de Make.com para ver los datos:\n\n' +
+                          '📧 Email: ' + email + '\n' +
+                          '👤 Nombre: ' + name + '\n' +
+                          '💰 Plan: ' + plan + '\n' +
+                          '💵 Valor: $' + parseInt(amount).toLocaleString() + ' COP');
+                    closeTestModal();
+                } else {
+                    throw new Error('Error en la respuesta del webhook');
+                }
+            })
+            .catch(function(error) {
+                alert('❌ Error al enviar datos:\n\n' + error.message + '\n\n' +
+                      'Verifica que:\n' +
+                      '1. El webhook de Make.com esté activo\n' +
+                      '2. La URL sea correcta\n' +
+                      '3. El escenario esté publicado');
+            });
+        }
+
+        function openWompiTest() {
+            var testLink = document.getElementById('wompiTestLink').value;
+            window.open(testLink, '_blank');
+        }
+
+        function copyTestLink() {
+            var testLink = document.getElementById('wompiTestLink').value;
+            
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(testLink)
+                    .then(function() { alert('✅ Link copiado!'); })
+                    .catch(function() { fallbackCopy(); });
+            } else {
+                fallbackCopy();
+            }
+        }
+
+        function fallbackCopy() {
+            var input = document.getElementById('wompiTestLink');
+            input.select();
+            try {
+                document.execCommand('copy');
+                alert('✅ Link copiado!');
+            } catch (err) {
+                alert('⚠️ Copia manualmente el link');
+            }
+        }
+
+        document.getElementById('testModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeTestModal();
+            }
+        });
+    </script>
+</body>
+</html>

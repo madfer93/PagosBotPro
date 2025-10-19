@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PagosBot PRO - Automatización de Pagos</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">🤖 PagosBot PRO</h1>
+            <ul class="nav-menu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#beneficios">Beneficios</a></li>
+                <li><a href="#como-funciona">Cómo Funciona</a></li>
+                <li><a href="#precios">Precios</a></li>
+                <li><a href="#testimonios">Testimonios</a></li>
+                <li><a href="#contacto" class="btn-primary">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section id="inicio" class="hero">
+        <div class="container">
+            <h2>Automatiza tus Pagos con <span class="highlight">PagosBot PRO</span></h2>
+            <p>Gestiona pagos automáticamente, genera reportes inteligentes y visualiza dashboards en tiempo real</p>
+            <div class="hero-buttons">
+                <button onclick="openTermsModal('PRO')" class="btn-primary">Ver Planes</button>
+                <a href="#beneficios" class="btn-secondary">Ver Beneficios</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beneficios -->
+    <section id="beneficios" class="section-gray">
+        <div class="container">
+            <h2>¿Por qué elegir PagosBot PRO?</h2>
+            <p class="subtitle">Descubre las ventajas de automatizar tu gestión de pagos</p>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <div class="card-icon">💰</div>
+                    <h3>Automatización Total</h3>
+                    <p>Procesa pagos automáticamente sin intervención manual, ahorrando tiempo y reduciendo errores.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3>Reportes Inteligentes</h3>
+                    <p>Genera reportes detallados y dashboards visuales directamente en Google Sheets.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">⚡</div>
+                    <h3>Tiempo Real</h3>
+                    <p>Monitorea tus pagos y métricas en tiempo real con actualizaciones instantáneas.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">🔒</div>
+                    <h3>Seguridad Garantizada</h3>
+                    <p>Protección avanzada de datos con encriptación y cumplimiento de estándares de seguridad.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">⚙️</div>
+                    <h3>Fácil Configuración</h3>
+                    <p>Setup rápido en minutos. No requiere conocimientos técnicos avanzados.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">🎯</div>
+                    <h3>Soporte 24/7</h3>
+                    <p>Asistencia técnica disponible las 24 horas para resolver cualquier consulta.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cómo Funciona -->
+    <section id="como-funciona" class="section-white">
+        <div class="container">
+            <h2>¿Cómo funciona?</h2>
+            <p class="subtitle">Proceso simple desde la compra hasta la implementación</p>
+            
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Compra tu Plan</h3>
+                    <p>Elige el plan que mejor se adapte a tu negocio y completa el pago seguro.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Recibe por Email</h3>
+                    <p>Automáticamente recibirás el archivo de instalación en tu correo electrónico.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Agenda Asesoría</h3>
+                    <p>Coordina tu asesoría presencial (Villavicencio) o virtual (videollamada) para configurar todo.</p>
+                </div>
+            </div>
+            
+            <div class="delivery-box">
+                <h3>📦 Entrega Inmediata</h3>
+                <p>Al completar tu compra, recibirás el archivo automáticamente por email. ¡Listo para usar en minutos!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Precios -->
+    <section id="precios" class="section-gray">
+        <div class="container">
+            <h2>Elige el Plan Perfecto</h2>
+            <p class="subtitle">Todos los planes incluyen soporte técnico y actualizaciones</p>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <h3 class="plan-name" style="color: #3b82f6;">BÁSICO</h3>
+                    <div class="plan-price">$100.000</div>
+                    <p class="plan-period">Pago Único • Soporte 1 mes</p>
+                    <button onclick="openTermsModal('BASICO')" class="btn-primary">Comprar Ahora</button>
+                </div>
+                
+                <div class="card card-featured">
+                    <div class="badge-popular">🔥 MÁS POPULAR</div>
+                    <h3 class="plan-name" style="color: #059669;">PRO</h3>
+                    <div class="plan-price">$250.000</div>
+                    <p class="plan-period">Pago Único • Soporte 3 meses</p>
+                    <button onclick="openTermsModal('PRO')" class="btn-primary">Comprar Ahora</button>
+                </div>
+                
+                <div class="card">
+                    <h3 class="plan-name" style="color: #7c3aed;">EMPRESARIAL</h3>
+                    <div class="plan-price">$500.000</div>
+                    <p class="plan-period">Pago Único • Soporte 6 meses</p>
+                    <button onclick="openTermsModal('EMPRESARIAL')" class="btn-primary">Comprar Ahora</button>
+                </div>
+            </div>
+
+            <!-- Tabla Comparativa -->
+            <div class="comparison-section">
+                <h3 class="comparison-title">Comparación Detallada de Planes</h3>
+                <div class="table-responsive">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Característica</th>
+                                <th>Básico</th>
+                                <th class="featured-col">PRO</th>
+                                <th>Empresarial</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Dashboard en Tiempo Real</strong></td>
+                                <td>✅</td>
+                                <td class="featured-col">✅</td>
+                                <td>✅</td>
+                            </tr>
+                            <tr>
+                                <td><strong>WhatsApp Automático</strong></td>
+                                <td>❌</td>
+                                <td class="featured-col highlight-cell">✅</td>
+                                <td>✅</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Notificaciones Instantáneas</strong></td>
+                                <td>Email</td>
+                                <td class="featured-col highlight-cell">WhatsApp</td>
+                                <td>WhatsApp</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Usuarios Simultáneos</strong></td>
+                                <td>1</td>
+                                <td class="featured-col">1</td>
+                                <td class="highlight-cell">5</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Chatbot Automático</strong></td>
+                                <td>❌</td>
+                                <td class="featured-col">❌</td>
+                                <td class="highlight-cell">✅</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Soporte Técnico</strong></td>
+                                <td>1 mes</td>
+                                <td class="featured-col">3 meses</td>
+                                <td>6 meses</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="cta-box">
+                <h3>¿No estás seguro cuál elegir?</h3>
+                <p>Contáctanos y te ayudamos a elegir el plan perfecto para tu negocio</p>
+                <a href="https://wa.me/573045788873?text=Hola%2C%20necesito%20ayuda%20para%20elegir%20el%20plan%20ideal%20de%20PagosBot%20PRO" target="_blank" class="btn-primary btn-large">
+                    💬 Hablar con un Asesor
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section id="testimonios" class="section-white">
+        <div class="container">
+            <h2>Lo que dicen nuestros clientes</h2>
+            <p class="subtitle">Historias reales de emprendedores que transformaron su gestión de pagos</p>
+            
+            <div class="grid-3">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #1e40af, #3b82f6);">MC</div>
+                        <div>
+                            <h4>María Camila Rodríguez</h4>
+                            <p class="testimonial-role">Tienda Online de Ropa</p>
+                        </div>
+                    </div>
+                    <div class="rating">★★★★★</div>
+                    <p class="testimonial-text">"PagosBot PRO cambió completamente mi negocio. Antes pasaba 3 horas diarias conciliando pagos manualmente. Ahora todo es automático y tengo tiempo para crecer mi marca."</p>
+                    <p class="testimonial-stat">✅ Ahorro de tiempo: 90%</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #059669, #10b981);">JD</div>
+                        <div>
+                            <h4>Javier Duarte</h4>
+                            <p class="testimonial-role">Agencia de Marketing</p>
+                        </div>
+                    </div>
+                    <div class="rating">★★★★★</div>
+                    <p class="testimonial-text">"Los reportes automáticos me dan una visión clara del flujo de caja. Puedo tomar decisiones informadas en segundos. La integración con Google Sheets es perfecta."</p>
+                    <p class="testimonial-stat">📈 ROI: 450% en 3 meses</p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #3b82f6, #8b5cf6);">LP</div>
+                        <div>
+                            <h4>Laura Pérez</h4>
+                            <p class="testimonial-role">E-commerce de Accesorios</p>
+                        </div>
+                    </div>
+                    <div class="rating">★★★★★</div>
+                    <p class="testimonial-text">"La configuración fue súper fácil y el soporte es increíble. En menos de una semana estábamos operando al 100%. Recomiendo PagosBot PRO sin dudarlo."</p>
+                    <p class="testimonial-stat">🎯 Errores reducidos: 99%</p>
+                </div>
+            </div>
+            
+            <!-- Estadísticas -->
+            <div class="stats-section">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Clientes Activos</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Satisfacción</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50K+</div>
+                        <div class="stat-label">Pagos Procesados</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Soporte</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="section-gray">
+        <div class="container text-center">
+            <h2>¿Listo para Automatizar tus Pagos?</h2>
+            <p class="subtitle">Contáctanos hoy y comienza a ahorrar tiempo desde el primer día</p>
+            
+            <div class="contact-info">
+                <p>📱 WhatsApp: +57 304 578 8873</p>
+                <p>✉️ Email: madfer1993@gmail.com</p>
+                <a href="https://wa.me/573045788873?text=Hola,%20quiero%20información%20sobre%20PagosBot%20PRO" 
+                   target="_blank" 
+                   class="btn-primary btn-large">
+                    📱 Contactar por WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>🤖 PagosBot PRO</h3>
+                    <p>Automatiza tu gestión de pagos con tecnología inteligente. Ahorra tiempo, reduce errores y enfócate en hacer crecer tu negocio.</p>
+                    <div class="social-icons">
+                        <a href="https://wa.me/573045788873" target="_blank" class="social-icon" style="background: #25D366;">💬</a>
+                        <a href="mailto:madfer1993@gmail.com" class="social-icon" style="background: #EA4335;">✉️</a>
+                        <a href="https://www.facebook.com/profile.php?id=61571446114189" target="_blank" class="social-icon" style="background: #1877F2;">f</a>
+                        <a href="https://www.instagram.com/variedadesjym/" target="_blank" class="social-icon" style="background: linear-gradient(45deg, #F58529, #DD2A7B);">📷</a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#beneficios">Beneficios</a></li>
+                        <li><a href="#como-funciona">Cómo Funciona</a></li>
+                        <li><a href="#precios">Planes y Precios</a></li>
+                        <li><a href="#testimonios">Testimonios</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Nuestros Planes</h3>
+                    <ul>
+                        <li><a href="javascript:void(0)" onclick="openTermsModal('BASICO')">Plan Básico - $100.000</a></li>
+                        <li><a href="javascript:void(0)" onclick="openTermsModal('PRO')">Plan PRO - $250.000 🔥</a></li>
+                        <li><a href="javascript:void(0)" onclick="openTermsModal('EMPRESARIAL')">Plan Empresarial - $500.000</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contacto</h3>
+                    <p>📱 +57 304 578 8873</p>
+                    <p>✉️ madfer1993@gmail.com</p>
+                    <p>📍 Villavicencio, Meta</p>
+                    <p>🕐 Lun-Vie: 8AM - 6PM</p>
+                </div>
+            </div>
+            
+            <div class="footer-divider"></div>
+            
+            <div class="footer-bottom">
+                <div>
+                    <p>&copy; 2025 PagosBot PRO - Variedades JyM. Todos los derechos reservados.</p>
+                    <p>✨ Creado y desarrollado por Variedades JyM 🇨🇴</p>
+                </div>
+                <div class="footer-legal">
+                    <a href="terminos.html" target="_blank">Términos y Condiciones</a>
+                    <a href="privacidad.html" target="_blank">Política de Privacidad</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Términos -->
+    <div class="modal" id="termsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📋 Términos y Condiciones</h2>
+                <p>Lee cuidadosamente antes de continuar</p>
+            </div>
+            
+            <div class="modal-body">
+                <div class="alert alert-warning">
+                    <p><strong>⚠️ IMPORTANTE:</strong> Al continuar aceptas estos términos legalmente vinculantes</p>
+                </div>
+                
+                <h3>Resumen de Términos Clave:</h3>
+                <ul>
+                    <li>✅ Licencia de uso limitada y no transferible</li>
+                    <li>🚫 Prohibido modificar, duplicar o redistribuir</li>
+                    <li>⚖️ Protegido por leyes colombianas (Ley 23/1982)</li>
+                    <li>⚠️ Violación = Sanciones penales (Art. 270-272 CP)</li>
+                    <li>💰 No hay reembolsos (producto digital)</li>
+                </ul>
+                
+                <p class="text-center" style="margin-top: 2rem;">
+                    <a href="terminos.html" target="_blank" class="link-primary">
+                        📄 Leer Términos Completos →
+                    </a>
+                </p>
+            </div>
+            
+            <div class="modal-footer">
+                <div class="checkbox-container">
+                    <input type="checkbox" id="termsCheckbox" onchange="toggleAcceptButton()">
+                    <label for="termsCheckbox">
+                        He leído y acepto los Términos y Condiciones
+                    </label>
+                </div>
+                
+                <button id="acceptBtn" class="btn-primary btn-block" onclick="acceptTerms()" disabled>
+                    🔒 Debes aceptar para continuar
+                </button>
+                
+                <button class="btn-secondary btn-block" onclick="closeModal()">
+                    Cancelar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botón Admin -->
+    <button class="admin-toggle" onclick="window.location.href='admin.html'" title="Panel Admin">⚙️</button>
+
+    <!-- Chatbot -->
+    <div class="chat-widget">
+        <button class="chat-button" onclick="toggleChat()">💬</button>
+        
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <h3>🤖 Asistente PagosBot</h3>
+                <button class="chat-close" onclick="toggleChat()">&times;</button>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages"></div>
+            
+            <div class="chat-input-container">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Escribe tu pregunta..." onkeypress="if(event.key==='Enter')sendMessage()">
+                <button class="chat-send" onclick="sendMessage()">Enviar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
