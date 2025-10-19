@@ -3,57 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PagosBot PRO - Automatización de Pagos</title>
+    <title>PagosBot PRO - Automatiza tus Pagos</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- Resto del contenido igual ... -->
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">💰 PagosBot PRO</h1>
+            <ul class="nav-links">
+                <li><a href="#planes">Planes</a></li>
+                <li><a href="#chatbot">Chatbot</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
 
-    <script>
-        // Botones de compra
-        function openTermsModal(plan) {
-            const wompiLinks = {
-                'BASICO': 'https://checkout.wompi.co/l/L0SRG6',
-                'PRO': 'https://checkout.wompi.co/l/MwpYpp',
-                'EMPRESARIAL': 'https://checkout.wompi.co/l/atLqX7'
-            };
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">Automatiza tus Pagos con Inteligencia Artificial</h1>
+            <p class="hero-subtitle">Gestiona cobros, envía recordatorios y ten un chatbot 24/7 con tus clientes</p>
+            <a href="#planes" class="cta-button">Ver Planes</a>
+        </div>
+    </section>
+
+    <!-- Planes Section -->
+    <section id="planes" class="plans-section">
+        <div class="container">
+            <h2 class="section-title">Nuestros Planes</h2>
+            <p class="section-subtitle">Elige el plan perfecto para tu negocio</p>
             
-            const modal = document.getElementById('termsModal');
-            const acceptBtn = document.getElementById('acceptBtn');
-            const termsCheckbox = document.getElementById('termsCheckbox');
+            <div class="plans-grid">
+                <!-- Plan Básico -->
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3>💼 Plan Básico</h3>
+                        <div class="plan-price">
+                            <span class="price">$29.900</span>
+                            <span class="period">Pago único</span>
+                        </div>
+                    </div>
+                    <ul class="plan-features">
+                        <li>✅ Gestión de pagos con Wompi</li>
+                        <li>✅ Links de pago personalizados</li>
+                        <li>✅ Panel de control básico</li>
+                        <li>✅ Soporte por email</li>
+                        <li>✅ Archivo digital incluido</li>
+                    </ul>
+                    <button onclick="buyPlan('basico')" class="plan-button">Comprar Ahora</button>
+                </div>
+
+                <!-- Plan Pro -->
+                <div class="plan-card featured">
+                    <div class="badge">Más Popular</div>
+                    <div class="plan-header">
+                        <h3>🚀 Plan Pro</h3>
+                        <div class="plan-price">
+                            <span class="price">$49.900</span>
+                            <span class="period">Pago único</span>
+                        </div>
+                    </div>
+                    <ul class="plan-features">
+                        <li>✅ Todo lo del Plan Básico</li>
+                        <li>✅ Chatbot inteligente con IA</li>
+                        <li>✅ Automatizaciones con Make.com</li>
+                        <li>✅ Recordatorios automáticos</li>
+                        <li>✅ Soporte prioritario</li>
+                        <li>✅ Configuración personalizada</li>
+                    </ul>
+                    <button onclick="buyPlan('premium')" class="plan-button">Comprar Ahora</button>
+                </div>
+
+                <!-- Plan Empresarial -->
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3>🏢 Plan Empresarial</h3>
+                        <div class="plan-price">
+                            <span class="price">$99.900</span>
+                            <span class="period">Pago único</span>
+                        </div>
+                    </div>
+                    <ul class="plan-features">
+                        <li>✅ Todo lo del Plan Pro</li>
+                        <li>✅ Integraciones ilimitadas</li>
+                        <li>✅ Reportes avanzados</li>
+                        <li>✅ Webhook personalizado</li>
+                        <li>✅ Soporte 24/7</li>
+                        <li>✅ Consultoría personalizada</li>
+                        <li>✅ Implementación completa</li>
+                    </ul>
+                    <button onclick="buyPlan('empresarial')" class="plan-button">Comprar Ahora</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chatbot Section -->
+    <section id="chatbot" class="chatbot-section">
+        <div class="container">
+            <h2 class="section-title">Prueba nuestro Chatbot</h2>
+            <p class="section-subtitle">Pregúntame lo que necesites sobre los planes</p>
             
-            modal.style.display = 'block';
+            <div class="chatbot-container">
+                <div class="chat-messages" id="chatMessages"></div>
+                <div class="chat-input-container">
+                    <input 
+                        type="text" 
+                        id="chatInput" 
+                        placeholder="Escribe tu pregunta..."
+                        class="chat-input"
+                    >
+                    <button id="sendMessage" class="chat-send-btn">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto Section -->
+    <section id="contacto" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Contáctanos</h2>
+            <p class="section-subtitle">Estamos aquí para ayudarte</p>
             
-            // Actualizar el botón de aceptar con el plan seleccionado
-            acceptBtn.onclick = function() {
-                if (termsCheckbox.checked) {
-                    window.open(wompiLinks[plan], '_blank');
-                    closeModal();
-                }
-            };
-        }
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>📧 Email</h3>
+                    <p>variedadesjym@gmail.com</p>
+                </div>
+                <div class="contact-item">
+                    <h3>🌐 Web</h3>
+                    <p>www.pagosbot.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        function closeModal() {
-            document.getElementById('termsModal').style.display = 'none';
-        }
-
-        function toggleAcceptButton() {
-            const checkbox = document.getElementById('termsCheckbox');
-            const acceptBtn = document.getElementById('acceptBtn');
-            acceptBtn.disabled = !checkbox.checked;
-            acceptBtn.textContent = checkbox.checked ? '✅ Continuar con la compra' : '🔒 Debes aceptar para continuar';
-        }
-
-        // Chatbot
-        function toggleChat() {
-            const chatWindow = document.getElementById('chatWindow');
-            chatWindow.style.display = chatWindow.style.display === 'none' ? 'block' : 'none';
-        }
-
-        window.onload = function() {
-            // Resto del código onload...
-        };
-    </script>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>PagosBot PRO</h3>
+                    <p>Automatización inteligente de pagos para tu negocio</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="terminos.html">Términos y Condiciones</a></li>
+                        <li><a href="privacidad.html">Política de Privacidad</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 PagosBot PRO - Variedades JyM. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
 
     <script src="js/main.js"></script>
 </body>
